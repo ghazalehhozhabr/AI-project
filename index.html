@@ -26,7 +26,7 @@
         box-shadow: 0px 20px 60px rgb(65, 50, 100, 0.8);
         background-color: white;
         display: flex;
-        width: 600px;
+
         text-align: center;
       }
       .search-holder {
@@ -46,41 +46,64 @@
         border: none;
         padding: 14px 24px;
         font-size: 16px;
-        width: 150%;
+        width: 150px;
+      }
+      .poem {
+        font-size: 14px;
+        background-color: #fff;
+        padding: 20px;
+        line-height: 2;
+        border-left: 3px solid #885df1;
+        box-shadow: 0px 20px 60px rgb(65, 50, 100, 0.8);
+      }
+      a {
+        color: #885df1;
+      }
+      footer {
+        font-size: 13px;
+        text-align: center;
+        margin-top: 30px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 120px auto;
       }
     </style>
   </head>
   <body>
-    <header><h1>AI French poem generator</h1></header>
-    <main>
-      <form>
-        <input
-          type="text"
-          placeholder="Enter the topic of the French poem"
-          autocomplete="off"
-          required
-          autofocus
-          class="search-holder"
-        />
-        <input type="button" value="submit" class="button-submit" />
-      </form>
-      <div>
-        Demain, dès l’aube, à l’heure où blanchit la campagne,
-        <br />
-        Je partirai. Vois-tu, je sais que tu m’attends.
-      </div>
-    </main>
+    <div class="container">
+      <header><h1>AI French poem generator</h1></header>
+      <main>
+        <form>
+          <input
+            type="text"
+            placeholder="Enter the topic of the French poem"
+            autocomplete="off"
+            required
+            autofocus
+            class="search-holder"
+          />
+          <input type="button" value="submit" class="button-submit" />
+        </form>
+        <div class="poem">
+          Demain, dès l’aube, à l’heure où blanchit la campagne,
+          <br />
+          Je partirai. Vois-tu, je sais que tu m’attends.
+        </div>
+      </main>
 
-    <footer>
-      This AI project was coded by
-      <a href="https://github.com/ghazalehhozhabr">ghazaleh hozhabri</a> and is
-      <a href="https://github.com/ghazalehhozhabr/AI-project"
-        >open-sourced on GitHub</a
-      >
-      and is
-      <a href="https://final-project-for-ai-poem.netlify.app/"
-        >hosted on Netlify</a
-      >.
-    </footer>
+      <footer>
+        This AI project was coded by
+        <a href="https://github.com/ghazalehhozhabr">ghazaleh hozhabri</a> and
+        is
+        <a href="https://github.com/ghazalehhozhabr/AI-project"
+          >open-sourced on GitHub</a
+        >
+        and is
+        <a href="https://final-project-for-ai-poem.netlify.app/"
+          >hosted on Netlify</a
+        >.
+      </footer>
+    </div>
   </body>
 </html>
