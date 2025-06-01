@@ -103,18 +103,19 @@
       </footer>
     </div>
     <script>
-      function searching(event) {
-        event.preventDefault();
-        new Typewriter("#poem", {
-          strings: ["Demain, dès l’aube, à l’heure où blanchit la campagne,"],
-          autoStart: true,
-          cursor: null,
-          delay: 10,
-          loop: false,
-        });
-      }
-      let buttonElement = document.querySelector("#search-form");
-      buttonElement.addEventListener("submit", searching);
+          function searching(event) {
+            event.preventDefault();
+            new Typewriter("#poem", {
+              autoStart: true,
+              cursor: null,
+              delay: 10,
+              loop: false,
+            });
+            .typeString("Demain, dès l’aube, à l’heure où blanchit la campagne,")
+      .pauseFor(999999);
+          }
+          let buttonElement = document.querySelector("#search-form");
+          buttonElement.addEventListener("submit", searching);
     </script>
   </body>
 </html>
