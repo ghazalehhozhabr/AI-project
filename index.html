@@ -8,7 +8,7 @@
     <title>AI French poem generator</title>
     <style>
       body {
-        background: color #f9f7fe;
+        background-color: #f9f7fe;
         font-family: Arial, Helvetica, sans-serif;
       }
       header {
@@ -110,13 +110,15 @@
         let holderinput = document.querySelector("#search-holder");
         let apikey = "88d4tb4ea0670o00dfb5a6cf88fca399";
         let context =
-          "you are a romantic poem expert and love to write short french poems with 4 line that has <br> html element between each line ";
+          "you are a romantic poem expert and love to write short french poems with 4 line. ";
         let prompt = `as an ai asistant generate  french poem based on ${holderinput.value}`;
         let apiurl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apikey}`;
         axios.get(apiurl).then(displaypoem);
       }
       function displayPoem(response) {
-        new Typewriter("#poem", {
+        let poemElement = document.querySelector("#poem");
+        poemElement.innerHTML = "";
+        new Typewriter(poemElement, {
           autoStart: true,
           delay: 10,
           loop: false,
