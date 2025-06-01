@@ -27,6 +27,16 @@
         background-color: white;
         display: flex;
         max-width: 600px;
+        text-align: center;
+      }
+      .search-holder {
+        max-width: 80%;
+        border-radius: 50px;
+        border: 1px solid rgba(39, 33, 66, 0.5);
+        font-size: 18px;
+        color: #272044;
+        padding: 16px;
+        line-height: 20px;
       }
     </style>
   </head>
@@ -40,6 +50,7 @@
           autocomplete="off"
           required
           autofocus
+          class="search-holder"
         />
         <input type="button" value="submit" />
       </form>
