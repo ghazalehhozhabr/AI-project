@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <title>AI French poem generator</title>
     <style>
       body {
@@ -74,7 +75,7 @@
     <div class="container">
       <header><h1>AI French poem generator</h1></header>
       <main>
-        <form>
+        <form id="search-form">
           <input
             type="text"
             placeholder="Enter the topic of the French poem"
@@ -85,11 +86,7 @@
           />
           <input type="button" value="submit" class="button-submit" />
         </form>
-        <div class="poem">
-          Demain, dès l’aube, à l’heure où blanchit la campagne,
-          <br />
-          Je partirai. Vois-tu, je sais que tu m’attends.
-        </div>
+        <div class="poem" id="poem"></div>
       </main>
 
       <footer>
@@ -105,5 +102,18 @@
         >.
       </footer>
     </div>
+    <script>
+      function searching(event) {
+        event.preventDefault();
+        new Typewriter("#poem", {
+          strings: ["Demain, dès l’aube, à l’heure où blanchit la campagne,"],
+          autoStart: true,
+          cursor: null,
+          delay: 10,
+        });
+      }
+      let buttonElement = document.querySelector("#search-form");
+      buttonElement.addEventListener("click", searching);
+    </script>
   </body>
 </html>
