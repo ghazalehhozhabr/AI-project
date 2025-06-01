@@ -105,33 +105,30 @@
       </footer>
     </div>
     <script>
-               function searching(event) {
-                 event.preventDefault();
-                 let holderinput=document.querySelector("#search-holder"),
-                 let apikey="88d4tb4ea0670o00dfb5a6cf88fca399";
-                 let context="you are a romantic poem expert and love to write short french poems with 4 line that has <br> html element between each line "
-                 let prompt=`as an ai asistant generate  french poem based on ${holderinput.value}`;
-                 let apiurl=`https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apikey}`;
-               axios.get(apiurl).then(displaypoem);
+      function searching(event) {
+        event.preventDefault();
+        let holderinput = document.querySelector("#search-holder");
+        let apikey = "88d4tb4ea0670o00dfb5a6cf88fca399";
+        let context =
+          "you are a romantic poem expert and love to write short french poems with 4 line that has <br> html element between each line ";
+        let prompt = `as an ai asistant generate  french poem based on ${holderinput.value}`;
+        let apiurl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apikey}`;
+        axios.get(apiurl).then(displaypoem);
+      }
+      function displayPoem(response) {
+        new Typewriter("#poem", {
+          autoStart: true,
+          delay: 10,
+          loop: false,
+          cursor: null,
+        })
+          .typeString(response.data.answer)
+          .pauseFor(999999)
+          .start();
+      }
 
-               }
-               function displaypoem(response){
-      new Typewriter("#poem", {
-        strings:response.data.answer,
-                   autoStart: true,
-                   cursor: null,
-                   delay: 10,
-                   loop: false,
-                 });
-
-           .pauseFor(999999);
-
-               }
-
-
-
-               let buttonElement = document.querySelector("#search-form");
-               buttonElement.addEventListener("submit", searching);
+      let buttonElement = document.querySelector("#search-form");
+      buttonElement.addEventListener("submit", searching);
     </script>
   </body>
 </html>
