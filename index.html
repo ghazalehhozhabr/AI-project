@@ -110,10 +110,11 @@
           autoStart: true,
           cursor: null,
           delay: 10,
+          loop: false,
         });
       }
       let buttonElement = document.querySelector("#search-form");
-      buttonElement.addEventListener("click", searching);
+      buttonElement.addEventListener("submit", searching);
     </script>
   </body>
 </html>
