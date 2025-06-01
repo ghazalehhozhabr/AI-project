@@ -110,27 +110,44 @@
         let holderinput = document.querySelector("#search-holder");
         let apikey = "88d4tb4ea0670o00dfb5a6cf88fca399";
         let context =
-          "you are a romantic poem expert and love to write short french poems with 4 line. ";
-        let prompt = `as an ai asistant generate  french poem based on ${holderinput.value}`;
-        let apiurl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apikey}`;
-        axios.get(apiurl).then(displaypoem);
+          "You are a romantic French poetry expert. You always write short poems with 4 lines and use <br> between lines.";
+
+        let prompt = `As an AI assistant, generate a beautiful short French poem about "${holderinput.value}"`;
+
+        let apiurl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(
+          prompt
+        )}&context=${encodeURIComponent(context)}&key=${apikey}`;
+
+        axios
+          .get(apiurl)
+          .then(displayPoem)
+          .catch((error) => {
+            console.error("Error fetching poem:", error);
+            document.querySelector("#poem").innerHTML =
+              "❌ Sorry, we couldn't generate a poem. Please try again.";
+          });
       }
+
       function displayPoem(response) {
+        console.log("Response:", response.data);
+        let poem = response.data.answer || "⚠️ No poem received.";
         let poemElement = document.querySelector("#poem");
         poemElement.innerHTML = "";
+
         new Typewriter(poemElement, {
           autoStart: true,
           delay: 10,
           loop: false,
           cursor: null,
         })
-          .typeString(response.data.answer)
+          .typeString(poem)
           .pauseFor(999999)
           .start();
       }
 
-      let buttonElement = document.querySelector("#search-form");
-      buttonElement.addEventListener("submit", searching);
+      document
+        .querySelector("#search-form")
+        .addEventListener("submit", searching);
     </script>
   </body>
 </html>
