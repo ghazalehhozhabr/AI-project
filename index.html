@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <title>AI French poem generator</title>
     <style>
@@ -83,6 +84,7 @@
             required
             autofocus
             class="search-holder"
+            id="search-holder"
           />
           <input type="submit" value="submit" class="button-submit" />
         </form>
@@ -103,19 +105,33 @@
       </footer>
     </div>
     <script>
-          function searching(event) {
-            event.preventDefault();
-            new Typewriter("#poem", {
-              autoStart: true,
-              cursor: null,
-              delay: 10,
-              loop: false,
-            });
-            .typeString("Demain, dès l’aube, à l’heure où blanchit la campagne,")
-      .pauseFor(999999);
-          }
-          let buttonElement = document.querySelector("#search-form");
-          buttonElement.addEventListener("submit", searching);
+               function searching(event) {
+                 event.preventDefault();
+                 let holderinput=document.querySelector("#search-holder"),
+                 let apikey="88d4tb4ea0670o00dfb5a6cf88fca399";
+                 let context="you are a romantic poem expert and love to write short french poems with 4 line that has <br> html element between each line "
+                 let prompt=`as an ai asistant generate  french poem based on ${holderinput.value}`;
+                 let apiurl=`https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apikey}`;
+               axios.get(apiurl).then(displaypoem);
+
+               }
+               function displaypoem(response){
+      new Typewriter("#poem", {
+        strings:response.data.answer,
+                   autoStart: true,
+                   cursor: null,
+                   delay: 10,
+                   loop: false,
+                 });
+
+           .pauseFor(999999);
+
+               }
+
+
+
+               let buttonElement = document.querySelector("#search-form");
+               buttonElement.addEventListener("submit", searching);
     </script>
   </body>
 </html>
