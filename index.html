@@ -22,11 +22,6 @@
         color: #272044;
       }
       form {
-        padding: 30px;
-        margin-bottom: 30px;
-        border-radius: 10px;
-        box-shadow: 0px 20px 60px rgb(65, 50, 100, 0.8);
-        background-color: white;
         display: flex;
 
         text-align: center;
@@ -39,6 +34,13 @@
         color: #272044;
         padding: 16px;
         line-height: 20px;
+      }
+      .part1 {
+        padding: 15px 20px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 20px 60px rgb(65, 50, 100, 0.8);
+        background-color: white;
       }
       .button-submit {
         margin-left: 10px;
@@ -70,25 +72,46 @@
         max-width: 600px;
         margin: 120px auto;
       }
+      .pavaraghi {
+        opacity: 0.4;
+        margin-top: 5px;
+        font-size: 12px;
+      }
+      .hidden {
+        display: none;
+      }
+
+      .generating {
+        animation: blinker 1s linear infinite;
+      }
+
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <header><h1>AI French poem generator</h1></header>
       <main>
-        <form id="search-form">
-          <input
-            type="text"
-            placeholder="Enter the topic of the French poem"
-            autocomplete="off"
-            required
-            autofocus
-            class="search-holder"
-            id="search-holder"
-          />
-          <input type="submit" value="submit" class="button-submit" />
-        </form>
-        <div class="poem" id="poem"></div>
+        <div class="part1">
+          <form id="search-form">
+            <input
+              type="text"
+              placeholder="Enter the topic of the French poem"
+              autocomplete="off"
+              required
+              autofocus
+              class="search-holder"
+              id="search-holder"
+            />
+            <input type="submit" value="submit" class="button-submit" />
+          </form>
+          <div class="pavaraghi">ie:flowe,paris or cheese</div>
+        </div>
+        <div class="poem hidden" id="poem"></div>
       </main>
 
       <footer>
@@ -117,6 +140,9 @@
         let apiurl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(
           prompt
         )}&context=${encodeURIComponent(context)}&key=${apikey}`;
+        let hiddenelement = document.querySelector("#poem");
+        hiddenelement.classList.remove("hidden");
+        hiddenelement.innerHTML = `<div class="generating">generating a french poem about ${holderinput.value}</div>`;
 
         axios
           .get(apiurl)
